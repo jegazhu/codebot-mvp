@@ -103,9 +103,6 @@ codebot-mvp/
 └── README.md            # Documentación principal
 ```
 ---
-new_section = """
-
----
 
 ## 🛡️ Security Auditor (stand-alone tool)
 
