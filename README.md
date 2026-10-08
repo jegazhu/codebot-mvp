@@ -102,7 +102,47 @@ codebot-mvp/
 ├── requirements.txt     # Dependencias del proyecto
 └── README.md            # Documentación principal
 ```
+---
+new_section = """
 
+---
+
+## 🛡️ Security Auditor (stand-alone tool)
+
+Este repositorio incluye una herramienta **independiente** de auditoría de seguridad para repositorios Python. Puede ejecutarse por sí sola, sin necesidad de desplegar todo el stack de CodeBot, y es útil para cualquier proyecto Python que quieras revisar rápidamente.
+
+### ✨ ¿Qué hace?
+
+- 🔍 **Análisis estático con AST** — Detecta llamadas peligrosas como `exec()`, `eval()`, `subprocess.run()`, `os.system()`, `pickle.loads()`, etc.
+- 🔐 **Escaneo de secretos hardcodeados** — Busca API keys (OpenAI, AWS), contraseñas, tokens y claves privadas embebidas en el código.
+- 📦 **Detección de imports riesgosos** — Identifica módulos potencialmente peligrosos (`subprocess`, `socket`, `ctypes`, `smtplib`, `paramiko`, etc.).
+- 🧪 **Verificación de sandbox** — Comprueba si el repositorio incluye mecanismos explícitos de aislamiento.
+- 📊 **Reporte con severidad y risk score** — Clasifica los hallazgos en `CRITICAL`, `HIGH`, `MEDIUM`, `LOW`, `INFO` y calcula un score global.
+- 📝 **Exportación automática** — Genera `audit_report.json` (detalle completo) y `SECURITY_AUDIT.md` (resumen ejecutivo).
+
+### 🚀 Uso rápido (Google Colab)
+
+1. Abre una celda nueva en Colab.
+2. Copia el contenido de [`security_auditor.py`](./security_auditor.py).
+3. Ejecuta la celda. Aparecerá una interfaz con un campo de texto y un botón.
+4. Pega la **URL del repositorio de GitHub** (raíz o subdirectorio) o una **ruta local**.
+5. Pulsa **🚀 Ejecutar Auditoría**.
+6. Descarga los archivos `audit_report.json` y `SECURITY_AUDIT.md` desde el panel de archivos de Colab.
+
+> 💡 **Tip:** Acepta URLs como `https://github.com/usuario/repo/tree/main/subcarpeta` y las convierte automáticamente a la URL raíz clonable.
+
+### 🖥️ Uso local (fuera de Colab)
+
+```bash
+# Clonar el repo
+git clone https://github.com/jegazhu/codebot-mvp.git
+cd codebot-mvp
+
+# Instalar dependencias (solo si usas la UI de widgets)
+pip install ipywidgets
+
+# Ejecutar el auditor (requiere Jupyter para la UI)
+jupyter notebook security_auditor.py
 ---
 
 ## 🛡️ Licencia & Contribuciones
